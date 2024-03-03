@@ -20,7 +20,8 @@
 #  fk_rails_...  (owner_id => users.id)
 #
 class Photo < ApplicationRecord
-  belongs_to :owner, class_name: "User"
+  #10 counter_cache ->
+  belongs_to :owner, class_name: "User", counter_cache: true
   #4 -> follow_request.rb
   has_many :comments
 end

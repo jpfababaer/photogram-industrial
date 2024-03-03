@@ -19,7 +19,7 @@
 #  fk_rails_...  (photo_id => photos.id)
 #
 class Like < ApplicationRecord
-  #8 ->
-  belongs_to :fan, class_name: "User"
-  belongs_to :photo
+  #8 -> adds annotate gem to Gemfile at :development -> comment.rb // #10 counter_cache -> photo.rb
+  belongs_to :fan, class_name: "User", counter_cache: true
+  belongs_to :photo, counter_cache: true
 end
