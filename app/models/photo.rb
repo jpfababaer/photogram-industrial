@@ -21,4 +21,6 @@
 #
 class Photo < ApplicationRecord
   belongs_to :owner, class_name: "User"
+  #4
+  has_many :comments
 end
