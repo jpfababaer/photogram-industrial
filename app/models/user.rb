@@ -28,11 +28,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  #4 Updating the counter-part has_many to create the DIRECT ASSOCIATION. Do not forget to update the migration file _create_photos.rb
   has_many :own_photos, class_name: "Photo", foreign_key: "owner_id"
+  #5 Away from convention = must specify "author_id" because the name of the table we're working on is Users.
   has_many :comments, foreign_key: "author_id"
 
   has_many :likes, foreign_key: "fan_id"
-  #QUESTION
   has_many :liked_photos, through: :likes, source: :photo
 
   #FollowRequest Model:
@@ -49,5 +50,6 @@ class User < ApplicationRecord
   has_many :feed, through: :leaders, source: :own_photos
   has_many :discover, through: :leaders, source: :liked_photos
 
+  #Validations: 
   validates :username, presence: true, uniqueness: true
 end

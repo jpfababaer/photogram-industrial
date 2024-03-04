@@ -3,6 +3,7 @@
 class DeviseCreateUsers < ActiveRecord::Migration[7.0]
   def change
     create_table :users do |t|
+      #2 Applying advance optimization for case-sensitivity then applying "citext" to the SPECIFIC columns we want this feature in. 
       enable_extension("citext")
       ## Database authenticatable
       t.citext :email,              null: false, default: ""
@@ -35,12 +36,14 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
 
       t.citext :username
       t.boolean :private
+      #2 Always look at your migration files to set default values for columns it makes sense for.
       t.integer :likes_count, default: 0
       t.integer :comments_count, default: 0
 
       t.timestamps null: false
     end
 
+    #2 Indexing is automatically done for PRIMARY keys. This speeds up searching specific columns. For other columns, like email, reset_password_token, and username, we have to use the "add_index" to make indexes for these columns. Unique: true is the stronger version of a validation for uniqueness.
     add_index :users, :email,                unique: true
     add_index :users, :reset_password_token, unique: true
     add_index :users, :username,              unique: true
