@@ -24,6 +24,8 @@ class Photo < ApplicationRecord
   belongs_to :owner, class_name: "User", counter_cache: true
   #4 -> follow_request.rb
   has_many :comments
-  #15 from Like -> 
+  #15 from Like
   has_many :likes
+  #16 Like model has fan_id -> user.rb
+  has_many :fans, through: :likes,
 end
