@@ -19,7 +19,8 @@
 #  fk_rails_...  (photo_id => photos.id)
 #
 class Comment < ApplicationRecord
-  #2 -> user.rb // #9 counter_cache -> like.rb
   belongs_to :author, class_name: "User", counter_cache: true
   belongs_to :photo, counter_cache: true
+
+  validates :body, presence: true
 end

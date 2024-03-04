@@ -20,12 +20,11 @@
 #  fk_rails_...  (owner_id => users.id)
 #
 class Photo < ApplicationRecord
-  #10 counter_cache -> user.rb
   belongs_to :owner, class_name: "User", counter_cache: true
-  #4 -> follow_request.rb
   has_many :comments
-  #15 from Like
   has_many :likes
-  #16 Like model has fan_id -> user.rb
-  has_many :fans, through: :likes,
+  has_many :fans, through: :likes
+
+  validates :caption, presence: true
+  validates :image, presence: true
 end
