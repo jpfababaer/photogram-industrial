@@ -30,7 +30,7 @@ class Photo < ApplicationRecord
   #10 has_many counter_part from Likes
   has_many :likes
 
-  
+  #12 There are MANY fans (users) for ONE photo. We do NOT need to add the "source: fan" because we have defined this METHOD in the table Like. We DIRECTLY associate this has_many to the belongs_to :fan in table Like and the belongs_to DIRECTLY associates to table User's has_many :likes. Therefore, we establish an INDIRECT association of Photo to User.
   has_many :fans, through: :likes
 
   #Validations:

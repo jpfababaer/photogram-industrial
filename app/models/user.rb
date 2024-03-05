@@ -36,8 +36,9 @@ class User < ApplicationRecord
   #10 has_many counter_part from Comment
   has_many :comments, foreign_key: "author_id"
 
-  #10 has_many counter_part from Likes
+  #10 has_many counter_part from Likes belong_to
   has_many :likes, foreign_key: "fan_id"
+  #12 the other side of the N-N relationship. There are MANY photos that One user likes. This has_many DIRECTLY associates with the table Like's belongs_to :photo and this belongs_to DIRECTLY associates with the table Photo's has_many :likes. Therefore, we establish an INDIRECT association from User to Photos.
   has_many :liked_photos, through: :likes, source: :photo
 
   #FollowRequest Model:
@@ -49,6 +50,7 @@ class User < ApplicationRecord
   has_many :accepted_received_follow_requests, -> { accepted }, foreign_key: :recipient_id, class_name: "FollowRequest"
 
   #FollowRequest -> leaders + followers
+  #13 To get Person A's active following list, we need to use through/source via the User's SCOPED OUT :accepted_sent_follow_requests to only get Users (B,C,D,E..) that ACCEPTED the follow request.
   has_many :leaders, through: :accepted_sent_follow_requests, source: :recipient
   has_many :followers, through: :accepted_received_follow_requests, source: :sender
 
