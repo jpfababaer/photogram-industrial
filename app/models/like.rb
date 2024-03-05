@@ -19,7 +19,8 @@
 #  fk_rails_...  (photo_id => photos.id)
 #
 class Like < ApplicationRecord
-  #8 -> adds annotate gem to Gemfile at :development -> comment.rb // #10 counter_cache -> photo.rb
+  #7 Away from convention = define which table its suppose to point to so it knows which foreign key to associate with :fan (fan_id)
+  #9 counter_cache so we can update the # of likes for the User and the Photo
   belongs_to :fan, class_name: "User", counter_cache: true
   belongs_to :photo, counter_cache: true
 end

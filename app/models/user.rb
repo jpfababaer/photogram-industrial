@@ -29,16 +29,22 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   #4 Updating the counter-part has_many to create the DIRECT ASSOCIATION. Do not forget to update the migration file _create_photos.rb
+  #10 has_many counter_part from Photos
   has_many :own_photos, class_name: "Photo", foreign_key: "owner_id"
+
   #5 Away from convention = must specify "author_id" because the name of the table we're working on is Users.
+  #10 has_many counter_part from Comment
   has_many :comments, foreign_key: "author_id"
 
+  #10 has_many counter_part from Likes
   has_many :likes, foreign_key: "fan_id"
   has_many :liked_photos, through: :likes, source: :photo
 
   #FollowRequest Model:
+  #10 has_many counter_part from FollowRequest
   has_many :sent_follow_requests, class_name: "FollowRequest", foreign_key: "sender_id"
   has_many :accepted_sent_follow_requests, -> { accepted }, foreign_key: :sender_id, class_name: "FollowRequest"
+  #10 has_many counter_part from FollowRequest
   has_many :received_follow_requests, class_name: "FollowRequest", foreign_key: "recipient_id"
   has_many :accepted_received_follow_requests, -> { accepted }, foreign_key: :recipient_id, class_name: "FollowRequest"
 
@@ -50,6 +56,6 @@ class User < ApplicationRecord
   has_many :feed, through: :leaders, source: :own_photos
   has_many :discover, through: :leaders, source: :liked_photos
 
-  #Validations: 
+  #Validations:
   validates :username, presence: true, uniqueness: true
 end
