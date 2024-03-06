@@ -6,6 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <!--1 Create a partial template to insert the cdn assets which contains Bootstrap + Javascript + Font -->
     <%= render partial: "shared/cdn_assets" %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
@@ -14,6 +15,7 @@
 
   <body>
 
+<!--2 Using the navbar components from bootstrap, copy pasting its HTML/CSS in the partial template and rendering it here.-->
     <%= render partial: "shared/navbar" %>
 
     <div class="container">
@@ -25,7 +27,7 @@
       <% if alert.present? %>
         <%= render partial: "shared/flash", locals: { message: alert, css_class: "danger" } %>
       <% end %>
-      
+
       <%= yield %>
     </div>
   </body>
