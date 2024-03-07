@@ -1,1 +1,13 @@
-hi
+<div class="row">
+  <div class="col md-6 offset-3">
+    <h1>
+      <%= @user.username %>
+    </h1>
+
+    <%= render "shared/tabbed_interface" %>
+  </div>
+</div>
+
+<% @user.leaders.each do |following| %>
+ <%= render "shared/following", following: following %>
+<% end %>
