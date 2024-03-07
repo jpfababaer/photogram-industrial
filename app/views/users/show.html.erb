@@ -12,44 +12,18 @@
         <%= link_to 'Liked photos', liked_path(@user.username), class: "nav-link" %>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Feed</a>
+        <%= link_to 'Feed', root_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Followers</a>
+        <%= link_to 'Followers', root_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Following</a>
+        <%= link_to 'Following', root_path, class: "nav-link" %>
       </li>
     </ul>
   </div>
 </div>
 
 <% @user.own_photos.each do |photo| %>
-  <div class="row mb-4">
-    <div class="col-md-6 offset-md-3">
-      <div class="card">
-        <%= image_tag photo.image, class: "card-img-top" %>
-        <div class="card-body">
-          <h5 class="card-title"><%= photo.owner.username %></h5>
-          <p class="card-text"><%= photo.caption %></p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <% photo.comments.each do |comment| %>
-            <div class="d-flex">
-              <div class="flex-shrink-0">
-                <img src="..." alt="...">
-              </div>
-              <div class="flex-grow-1 ms-3">
-                <h5 class="mt-0"><%= comment.author.username %></h5>
-                <p><%= comment.body %></p>
-              </div>
-            </div>
-          <% end%>
-        </ul>
-        <div class="card-body">
-          <%= render "comments/form", comment: Comment.new(photo_id: photo.id) %>
-        </div>
-      </div>
-    </div>
-  </div>
+  <%= render "photos/photo", photo: photo %>
 <% end %>
