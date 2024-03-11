@@ -8,6 +8,7 @@
   </div>
 </div>
 
+<!--2. Different association to display different sets of photos. Pattern persists. -->
 <% @user.leaders.each do |following| %>
  <%= render "shared/following", following: following %>
 <% end %>

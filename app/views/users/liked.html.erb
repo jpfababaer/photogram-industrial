@@ -8,6 +8,7 @@
   </div>
 </div>
 
+<!--2. In order to make the tabs properly work. We have to use the specific associates we have defined before in order to display the PROPER photo list. The other view templates will have a different association defined based on the desired photo list.-->
 <% @user.liked_photos.each do |photo| %>
  <%= render "photos/photo", photo: photo %>
 <% end %>
