@@ -52,9 +52,11 @@ class User < ApplicationRecord
   #FollowRequest -> leaders + followers
   #13 To get Person A's active following list, we need to use through/source via the User's SCOPED OUT :accepted_sent_follow_requests to only get Users (B,C,D,E..) that ACCEPTED the follow request.
   has_many :leaders, through: :accepted_sent_follow_requests, source: :recipient
+  #14 To get specific User's followers, call in the SCOPED method through "through" and access the method "sender" in FollowRequest. "sender" utilizes sender_id which gives all the individuals that SENT a request TO ME (but we filter for only the ones we accepted).
   has_many :followers, through: :accepted_received_follow_requests, source: :sender
 
   #FollowRequest -> direct feed (via leaders' own) + indirect feed (via leaders' liked)
+  #15
   has_many :feed, through: :leaders, source: :own_photos
   has_many :discover, through: :leaders, source: :liked_photos
 

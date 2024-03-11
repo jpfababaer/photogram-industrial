@@ -45,10 +45,10 @@ FLOW:
 
 QUESTION 3: Is feed just another method calling on other methods to get to the source: :own_photos? So when "feed" goes through "leaders", leaders goes through "accepted_sent" -> returns an ARR LIST of all the Users the match the scope then finally we can use that to use the method :own_photos which is more iteration depending on how long the ARR is? 
 
-14. Followers association: 
-15. Feed and discover associations:
+14. Followers association: user.rb 
+15. Feed and discover associations: user.rb
 
-16. Validations: using the annotate gem, we should look over ever Class and see which columns need validation. comment.rb + photo.rb + 
+16. Validations: using the annotate gem, we should look over every Class and see which columns need validation. comment.rb + photo.rb 
   -NOTE: when using belongs_to, the FK associated with these declarations are AUTOMATICALLY validated with the presence: option.
 
 
