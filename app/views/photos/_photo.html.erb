@@ -1,3 +1,4 @@
+<!--1 This is the reference point of the show.html.erb view template in order to show bootstrap cards for the robot images. This Bootstrap template is copy/pasted and adjusted to show the desired data we want. We also use another partial _form to address the comment section.-->
 <div class="row mb-4">
   <div class="col-md-6 offset-md-3">
     <div class="card">
@@ -22,6 +23,10 @@
         <% end %>
       </ul>
       <div class="card-body">
+      <!--1 This is how we auto-fill the "photo_id" column in table Comment. We need to pass in a local variable into the partial template _form. There are two was to write the code below: heres the other,
+      <%= render "comments/form", comment: Comment.new(photo_id: photo.id) %>
+      
+      We have access to the variable "photo" via the other render partial in show.html.erb. In that render, we are passing in the local variable "photo" with the instance of that Photo (which contains the "photo_id")-->
         <%= render "comments/form", comment: photo.comments.build %>
       </div>
     </div>

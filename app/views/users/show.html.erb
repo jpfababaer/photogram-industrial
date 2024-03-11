@@ -9,6 +9,7 @@
   </div>
 </div>
 
+<!--1. Use @user (which returns the specific Instance of the user) and the method "own_photos" to get the list of "photos" that's posted by the instance user. Then we reference the partial template that shows the photos iterated from .own_photos-->
 <% @user.own_photos.each do |photo| %>
   <%= render "photos/photo", photo: photo %>
 <% end %>

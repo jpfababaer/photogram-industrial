@@ -1,4 +1,4 @@
-
+<!--1 We need to make some adjustments here in order to make the comment section appealing. We removed the "author_id" input and kept the "photo_id" hidden. We can still auto-fill our id columns in table Comment but we do NOT need to show it to the user. We determine who the "author" is by defining this piece of code in the Comment controller.-->
 <%= form_with(model: comment) do |form| %>
   <% if comment.errors.any? %>
     <div style="color: red">

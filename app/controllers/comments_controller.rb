@@ -22,9 +22,11 @@ class CommentsController < ApplicationController
   # POST /comments or /comments.json
   def create
     @comment = Comment.new(comment_params)
+  #1 This is how we can store the author_id value for our table Comment. When a commenter creates a new comment, we use the current_user to determine the User instance that is creating the comment.
     @comment.author = current_user
 
     respond_to do |format|
+      #1 We use a new method called "redirect_back" in order to bring the user back to the previous page after commit a save. We provide a fallback_location in case Rails isn't able to detect the page the user came from. 
       if @comment.save
         format.html { redirect_back fallback_location: root_path, notice: "Comment was successfully created." }
         format.json { render :show, status: :created, location: @comment }
